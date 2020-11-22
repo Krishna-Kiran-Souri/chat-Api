@@ -40,6 +40,9 @@ module.exports.setRouter = (app) => {
     */
 
   // params: email, password.
+  app.get("*", function (req, res) {
+    res.send("hello world");
+  });
   app.post(`${baseUrl}/login`, userController.loginFunction);
 
   /**
