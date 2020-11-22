@@ -1,5 +1,7 @@
 "use strict";
-
+/**
+ * Module Dependencies
+ */
 const mongoose = require("mongoose"),
   Schema = mongoose.Schema;
 

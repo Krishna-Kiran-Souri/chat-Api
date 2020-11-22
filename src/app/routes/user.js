@@ -6,6 +6,8 @@ const appConfig = require("./../../config/appConfig");
 module.exports.setRouter = (app) => {
   let baseUrl = `${appConfig.apiVersion}/users`;
 
+  // defining routes.
+
   // params: firstName, lastName, email, mobileNumber, password
   app.post(`${baseUrl}/signup`, userController.signUpFunction);
 

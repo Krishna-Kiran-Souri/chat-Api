@@ -1,3 +1,4 @@
+/* response generation library for api */
 let generate = (err, message, status, data) => {
   let response = {
     error: err,
@@ -7,6 +8,7 @@ let generate = (err, message, status, data) => {
   };
   return response;
 };
+
 module.exports = {
   generate: generate
 };

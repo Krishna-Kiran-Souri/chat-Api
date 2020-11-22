@@ -1,45 +1,27 @@
 const express = require("express");
 const path = require("path");
-const cookieparser = require("cookie-parser");
-const bodyparser = require("body-parser");
+const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
 const fs = require("fs");
+const app = express();
 const http = require("http");
-const morgan = require("morgan");
-const mongoose = require("mongoose");
-
-/**
- * Custom Logger and Middle wares
- */
 const appConfig = require("./config/appConfig");
 const logger = require("./app/libs/loggerLib");
 const routeLoggerMiddleware = require("./app/middlewares/routeLogger.js");
 const globalErrorMiddleware = require("./app/middlewares/appErrorHandler");
-/**
- * Intialising express
- */
-const app = express();
+const mongoose = require("mongoose");
+const morgan = require("morgan");
 
-/**
- * Add Middlewares
- * @params {Object} morgan
- * @params {Object} bodyparser json urlencoded
- * @params {Object} cookieparser
- * Adding path and making it recoginse the direct
- */
 app.use(morgan("dev"));
-app.use(bodyparser.json());
-app.use(bodyparser.urlencoded({ extended: false }));
-app.use(cookieparser());
-app.use(express.static(path.join(__dirname, "public")));
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, "public")));
 app.use(routeLoggerMiddleware.logIp);
 app.use(globalErrorMiddleware.globalErrorHandler);
 
 app.use(express.static(path.join(__dirname, "client")));
-
-/**
- * Adding models, routes and controllers
- */
 
 const modelsPath = "./app/models";
 const controllersPath = "./app/controllers";
@@ -81,6 +63,7 @@ app.use(globalErrorMiddleware.globalNotFoundHandler);
 /**
  * Create HTTP server.
  */
+
 const server = http.createServer(app);
 // start listening to http server
 console.log(appConfig);

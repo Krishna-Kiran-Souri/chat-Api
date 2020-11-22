@@ -3,35 +3,25 @@ const shortid = require("shortid");
 const time = require("./../libs/timeLib");
 const response = require("./../libs/responseLib");
 const logger = require("./../libs/loggerLib");
-const validateInput = require("./../libs/paramsValidationLib");
-const check = require("./../libs/checkLib");
+const validateInput = require("../libs/paramsValidationLib");
+const check = require("../libs/checkLib");
 
+/* Models */
 const UserModel = mongoose.model("User");
 
-/**
- * SignupFunction
- * @params {Object,Object} request and response
- *
- **/
-let signupFunction = (req, res) => {};
+// start user signup function
 
-/**
- * Login Function
- * @params {Object,Object} request and response
- *
- **/
+let signUpFunction = (req, res) => {}; // end user signup function
 
+// start of login function
 let loginFunction = (req, res) => {};
 
-/**
- * Logout Function
- * @params {Object,Object} request and response
- *
- **/
-let logoutFunction = (req, res) => {};
+// end of the login function
+
+let logout = (req, res) => {}; // end of the logout function.
 
 module.exports = {
-  signupFunction,
-  loginFunction,
-  logoutFunction
-};
+  signUpFunction: signUpFunction,
+  loginFunction: loginFunction,
+  logout: logout
+}; // end exports

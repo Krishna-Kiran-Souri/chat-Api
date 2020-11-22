@@ -1,8 +1,9 @@
 const response = require("./../libs/responseLib");
 
-let errorHandler = (error, req, res, next) => {
-  console.log("application error handled");
-  console.err(error);
+let errorHandler = (err, req, res, next) => {
+  console.log("application error handler called");
+  console.log(err);
+
   let apiResponse = response.generate(
     true,
     "Some error occured at global level",
@@ -10,7 +11,7 @@ let errorHandler = (error, req, res, next) => {
     null
   );
   res.send(apiResponse);
-};
+}; // end request ip logger function
 
 let notFoundHandler = (req, res, next) => {
   console.log("Global not found handler called");
@@ -21,9 +22,9 @@ let notFoundHandler = (req, res, next) => {
     null
   );
   res.status(404).send(apiResponse);
-};
+}; // end not found handler
 
 module.exports = {
-  errorHandler: errorHandler,
-  notFoundHandler: notFoundHandler
+  globalErrorHandler: errorHandler,
+  globalNotFoundHandler: notFoundHandler
 };
